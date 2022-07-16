@@ -71,11 +71,11 @@ if __name__ == "__main__":
                 isFood = True if imgFoodProbability > THRESHOLD else False
                 if isFood:
                     shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
-                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], r'=> FOOD with % of ', imgFoodProbability)
+                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], r'=> FOOD /// % :', imgFoodProbability)
                 
                 else:
                     shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedNonFoodFolder + imgListForSpecificRestaurant[i])
-                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], r'=> NOT FOOD with % of ', 1 - imgFoodProbability)
+                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], r'=> NOT FOOD /// % :', 1 - imgFoodProbability)
 
             except:
                 shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], errorFolder + imgListForSpecificRestaurant[i])
