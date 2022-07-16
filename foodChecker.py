@@ -7,9 +7,8 @@ from transformers import pipelines
 
 extractor = AutoFeatureExtractor.from_pretrained("abhishek/autotrain-dog-vs-food")
 model = AutoModelForImageClassification.from_pretrained("abhishek/autotrain-dog-vs-food")
-THRESHOLD = 0.60
 
-def isItFood(imgPath : str) -> bool :
+def isItFood(imgPath : str) :
 	'''
 	imgPath : /content/drive/Shareddrives/coco 앱개발 대회/non-food/이명근떡볶이_8.png
 	THRESHOLD : 몇 퍼센트 이상인 경우에 음식이라 판단할지
@@ -24,7 +23,4 @@ def isItFood(imgPath : str) -> bool :
 
 	s = tf.nn.softmax(logits.detach().numpy()).numpy()
 
-	if s[0][1] > THRESHOLD :
-		return True
-	else:
-		return False
+	return s[0][1]

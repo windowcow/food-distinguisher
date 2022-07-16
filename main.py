@@ -51,6 +51,10 @@ def imgFiles(restaurantFolderDir : str) -> List[str] :
 #      print(imgDir)
 
 if __name__ == "__main__":
+    
+    THRESHOLD = 0.60
+    
+    
     for restaurant in RESTAURANT_NAME_LIST:
         restaurantInImageFolder = IMAGE_FOLDER_DIRECTORY + restaurant + '/'
         restaurantInSortedFoodFolder = SORTED_FOOD_IMAGE_FOLDER_DIRECTORY + restaurant + '/'
@@ -61,7 +65,7 @@ if __name__ == "__main__":
         
         for i in range(len(imgListForSpecificRestaurant)):
             try:
-                isFood = foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i]) == True
+                isFood = True if foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i]) > THRESHOLD else False
                 if isFood:
                     shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
                     print(restaurantInImageFolder + imgListForSpecificRestaurant[i], '=> FOOD')
