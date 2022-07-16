@@ -7,7 +7,7 @@ from transformers import pipelines
 
 extractor = AutoFeatureExtractor.from_pretrained("abhishek/autotrain-dog-vs-food")
 model = AutoModelForImageClassification.from_pretrained("abhishek/autotrain-dog-vs-food")
-THRESHOLD = 0.90
+THRESHOLD = 0.60
 
 def isItFood(imgPath : str) -> bool :
 	'''
