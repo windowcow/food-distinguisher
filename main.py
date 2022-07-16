@@ -50,21 +50,23 @@ def imgFiles(restaurantFolderDir : str) -> List[str] :
 #    for imgDir in imgDirs:
 #      print(imgDir)
 
-# if __name__ == "__main__":
-#     for restaurant in RESTAURANT_NAME_LIST:
-#         restaurantInImageFolder = IMAGE_FOLDER_DIRECTORY + restaurant + '/'
-#         restaurantInSortedFoodFolder = SORTED_FOOD_IMAGE_FOLDER_DIRECTORY + restaurant + '/'
-#         restaurantInSortedNonFoodFolder = SORTED_NON_FOOD_IMAGE_FOLDER_DIRECTORY + restaurant + '/'
-#         errorFolder = ERROR_FOLDER_DIRECTORY + restaurant + '/'
+if __name__ == "__main__":
+    for restaurant in RESTAURANT_NAME_LIST:
+        restaurantInImageFolder = IMAGE_FOLDER_DIRECTORY + restaurant + '/'
+        restaurantInSortedFoodFolder = SORTED_FOOD_IMAGE_FOLDER_DIRECTORY + restaurant + '/'
+        restaurantInSortedNonFoodFolder = SORTED_NON_FOOD_IMAGE_FOLDER_DIRECTORY + restaurant + '/'
+        errorFolder = ERROR_FOLDER_DIRECTORY + restaurant + '/'
         
-#         imgListForSpecificRestaurant = imgFiles(restaurantInImageFolder)
+        imgListForSpecificRestaurant = imgFiles(restaurantInImageFolder)
         
-#         for i in range(len(imgListForSpecificRestaurant)):
-#             try:
-#                 isFood = foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i]) == True
-#             except:
-#                 shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
-#             if isFood:
-#                 shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
-#             else:
-#                 shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedNonFoodFolder + imgListForSpecificRestaurant[i])
+        for i in range(len(imgListForSpecificRestaurant)):
+            try:
+                isFood = foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i]) == True
+            except:
+                shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], errorFolder + imgListForSpecificRestaurant[i])
+                continue
+            
+            if isFood:
+                shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
+            else:
+                shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedNonFoodFolder + imgListForSpecificRestaurant[i])
