@@ -13,6 +13,8 @@ RESTAURANT_NAME_LIST : List[str] = os.listdir(IMAGE_FOLDER_DIRECTORY)
 
 
 # 폴더 만들기 위한 코드
+os.mkdir(ERROR_FOLDER_DIRECTORY)
+
 for restaurantName in RESTAURANT_NAME_LIST:
     os.mkdir(ERROR_FOLDER_DIRECTORY + restaurantName)
 #     os.mkdir(SORTED_NON_FOOD_IMAGE_FOLDER_DIRECTORY + restaurantName)
