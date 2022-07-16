@@ -60,19 +60,22 @@ if __name__ == "__main__":
         restaurantInSortedFoodFolder = SORTED_FOOD_IMAGE_FOLDER_DIRECTORY + restaurant + '/'
         restaurantInSortedNonFoodFolder = SORTED_NON_FOOD_IMAGE_FOLDER_DIRECTORY + restaurant + '/'
         errorFolder = ERROR_FOLDER_DIRECTORY + restaurant + '/'
-        
-        imgListForSpecificRestaurant = imgFiles(restaurantInImageFolder)
+        try:
+            imgListForSpecificRestaurant = imgFiles(restaurantInImageFolder)
+        except:
+            continue
         
         for i in range(len(imgListForSpecificRestaurant)):
             try:
-                isFood = True if foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i]) > THRESHOLD else False
+                imgFoodProbability = foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i])
+                isFood = True if imgFoodProbability > THRESHOLD else False
                 if isFood:
                     shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
-                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], '=> FOOD')
+                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], r'=> FOOD with % of ', imgFoodProbability)
                 
                 else:
                     shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedNonFoodFolder + imgListForSpecificRestaurant[i])
-                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], '=> NOT FOOD')
+                    print(restaurantInImageFolder + imgListForSpecificRestaurant[i], r'=> NOT FOOD with % of ', 1 - imgFoodProbability)
 
             except:
                 shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], errorFolder + imgListForSpecificRestaurant[i])
