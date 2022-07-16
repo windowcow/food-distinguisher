@@ -62,11 +62,12 @@ if __name__ == "__main__":
         for i in range(len(imgListForSpecificRestaurant)):
             try:
                 isFood = foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i]) == True
+                if isFood:
+                    shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
+                else:
+                    shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedNonFoodFolder + imgListForSpecificRestaurant[i])
             except:
                 shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], errorFolder + imgListForSpecificRestaurant[i])
                 continue
             
-            if isFood:
-                shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedFoodFolder + imgListForSpecificRestaurant[i])
-            else:
-                shutil.copy(restaurantInImageFolder + imgListForSpecificRestaurant[i], restaurantInSortedNonFoodFolder + imgListForSpecificRestaurant[i])
+            
