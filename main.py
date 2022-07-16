@@ -60,6 +60,7 @@ if __name__ == "__main__":
         imgListForSpecificRestaurant = imgFiles(restaurantInImageFolder)
         
         for i in range(len(imgListForSpecificRestaurant)):
+            print(restaurantInImageFolder + imgListForSpecificRestaurant[i])
             try:
                 isFood = foodchecker.isItFood(restaurantInImageFolder + imgListForSpecificRestaurant[i]) == True
                 if isFood:
